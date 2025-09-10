@@ -1,10 +1,64 @@
-<!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>Website Statis Saya</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kucing Lucu</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background: #fdfdfd;
+      color: #333;
+    }
+    header {
+      background: #ffcccb;
+      padding: 20px;
+    }
+    h1 {
+      margin: 0;
+    }
+    .gallery {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 30px auto;
+      max-width: 900px;
+    }
+    .gallery img {
+      width: 250px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+    footer {
+      margin-top: 40px;
+      background: #eee;
+      padding: 15px;
+    }
+  </style>
 </head>
 <body>
-    <h1>Halo, Dunia!</h1>
-    <p>Ini website statis pertama saya di GitHub Pages 🚀</p>
+  <header>
+    <h1>Kucing Lucu 🐱</h1>
+    <p>Galeri kucing yang bikin hati adem</p>
+  </header>
+
+  <section class="gallery">
+    <img src="https://placekitten.com/300/200" alt="Kucing lucu 1">
+    <img src="https://placekitten.com/301/200" alt="Kucing lucu 2">
+    <img src="https://placekitten.com/302/200" alt="Kucing lucu 3">
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Website Kucing Lucu</p>
+  </footer>
 </body>
 </html>
