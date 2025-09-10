@@ -18,6 +18,7 @@
       background: #ffcccb;
       padding: 20px;
       transition: background 0.3s;
+      position: relative;
     }
     h1 {
       margin: 0;
@@ -25,6 +26,19 @@
     }
     p {
       margin: 5px 0 0;
+    }
+    .theme-toggle {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #fff;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      transition: background 0.3s, color 0.3s;
     }
     .gallery {
       display: grid;
@@ -34,6 +48,16 @@
       max-width: 1000px;
       padding: 0 15px;
     }
+    figure {
+      margin: 0;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 1s ease forwards;
+    }
+    figure:nth-child(1) { animation-delay: 0.2s; }
+    figure:nth-child(2) { animation-delay: 0.4s; }
+    figure:nth-child(3) { animation-delay: 0.6s; }
+
     .gallery img {
       width: 100%;
       height: auto;
@@ -44,6 +68,11 @@
     .gallery img:hover {
       transform: scale(1.05);
     }
+    figcaption {
+      margin-top: 8px;
+      font-size: 0.9rem;
+      color: #555;
+    }
     footer {
       margin-top: 40px;
       background: #eee;
@@ -52,21 +81,34 @@
       transition: background 0.3s;
     }
 
+    /* Animasi fade-in */
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     /* 🌙 Dark Mode */
-    @media (prefers-color-scheme: dark) {
-      body {
-        background: #121212;
-        color: #f5f5f5;
-      }
-      header {
-        background: #333;
-      }
-      footer {
-        background: #222;
-      }
-      .gallery img {
-        box-shadow: 0 4px 10px rgba(255,255,255,0.2);
-      }
+    body.dark {
+      background: #121212;
+      color: #f5f5f5;
+    }
+    body.dark header {
+      background: #333;
+    }
+    body.dark footer {
+      background: #222;
+    }
+    body.dark figcaption {
+      color: #ccc;
+    }
+    body.dark .gallery img {
+      box-shadow: 0 4px 10px rgba(255,255,255,0.2);
+    }
+    body.dark .theme-toggle {
+      background: #444;
+      color: #fff;
     }
   </style>
 </head>
@@ -74,17 +116,47 @@
   <header>
     <h1>Hello ges, aku gondes 🐱</h1>
     <p>Panggil aku "ndes" nada tinggi, pasti nengok. Rumah babuku di kontrakan pak sanin. Kalau main kejauhan tolong kabarin ke wa.me/6287779761778</p>
+    <button class="theme-toggle" id="themeToggle">🌙</button>
   </header>
 
   <section class="gallery">
-    <img src="https://placekitten.com/400/300" alt="Kucing lucu 1">
-    <p> Foto kalo lagi dirumah </p>
-    <img src="https://placekitten.com/401/300" alt="Kucing lucu 2">
-    <img src="https://placekitten.com/402/300" alt="Kucing lucu 3">
+    <figure>
+      <img src="https://lh3.googleusercontent.com/pw/AP1GczPIW1NItguTuAoljyhLu64Q_owOiiceENpbKv3BzbQIEy4C5SucfYz6jQx5sgzG3pNR3lwpDRYvkWe_-OrWp7ksYYii4XXrBSEUZr-rr4wbddx_EvHRFeB-IMUI6NS-33wdKUZxoJz3e0by0Ad4sqsHrw=w629-h839-s-no" alt="Kucing lucu 1">
+      <figcaption>Aku dan BE (mbokku) 🛋️</figcaption>
+    </figure>
+    <figure>
+      <img src="https://placekitten.com/401/300" alt="Kucing lucu 2">
+      <figcaption>Kucing penasaran menatap kamera 📸</figcaption>
+    </figure>
+    <figure>
+      <img src="https://placekitten.com/402/300" alt="Kucing lucu 3">
+      <figcaption>Kucing kecil lagi rebahan manja 😴</figcaption>
+    </figure>
   </section>
 
   <footer>
-    <p>&copy; 2025. Website Gondes</p>
+    <p>&copy; 2025 Website Kucing Lucu</p>
   </footer>
+
+  <script>
+    const toggleBtn = document.getElementById('themeToggle');
+    const body = document.body;
+
+    // cek preferensi sistem saat pertama kali
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      body.classList.add('dark');
+      toggleBtn.textContent = "☀️";
+    }
+
+    // toggle manual
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      if (body.classList.contains('dark')) {
+        toggleBtn.textContent = "☀️";
+      } else {
+        toggleBtn.textContent = "🌙";
+      }
+    });
+  </script>
 </body>
 </html>
