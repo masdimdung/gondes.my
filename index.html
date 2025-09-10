@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kucing Lucu</title>
+  <title>Gondes</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -12,7 +12,7 @@
       padding: 0;
       background: #fdfdfd;
       color: #333;
-      transition: background 0.3s, color 0.3s;
+      transition: background 0.4s ease, color 0.4s ease;
     }
     header {
       background: #ffcccb;
@@ -76,6 +76,15 @@
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 15px;
       padding: 20px;
+    }
+    .gallery figure {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    .gallery figure.show {
+      opacity: 1;
+      transform: translateY(0);
     }
     .gallery img {
       width: 100%;
@@ -161,6 +170,19 @@
       body.classList.toggle('dark');
       toggleBtn.textContent = body.classList.contains('dark') ? "☀️" : "🌙";
     });
+
+    // Fade-in effect untuk gambar ketika muncul di viewport
+    const figures = document.querySelectorAll('.gallery figure');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target); // biar animasi sekali saja
+        }
+      });
+    }, { threshold: 0.2 });
+
+    figures.forEach(fig => observer.observe(fig));
   </script>
 </body>
 </html>
